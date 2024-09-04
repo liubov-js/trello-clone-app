@@ -56,4 +56,7 @@ export class Comment extends Model<Comment, CommentCreationAttribute> {
 
   @BelongsTo(() => Card)
   column: Card;
+
+  @BelongsTo(() => User)
+  user: User;
 }

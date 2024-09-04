@@ -1,6 +1,7 @@
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
 import { TrelloColumn } from 'src/columns/columns.model';
+import { Comment } from 'src/comments/comments.model';
 
 interface UserCreationAttribute {
   email: string;
@@ -28,4 +29,7 @@ export class User extends Model<User, UserCreationAttribute> {
 
   @HasMany(() => TrelloColumn)
   columns: TrelloColumn[];
+
+  @HasMany(() => Comment)
+  comments: Comment[];
 }
