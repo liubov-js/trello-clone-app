@@ -10,9 +10,7 @@ import { CardsService } from './cards.service';
 @Module({
   providers: [CardsService],
   controllers: [CardsController],
-  imports: [
-    SequelizeModule.forFeature([TrelloColumn, User, Card, Comment]),
-  ],
+  imports: [SequelizeModule.forFeature([TrelloColumn, User, Card, Comment])],
   exports: [CardsService],
 })
 export class CardsModule {}

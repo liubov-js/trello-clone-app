@@ -1,6 +1,15 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  HasMany,
+  Model,
+  Table,
+} from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from "src/users/users.model";
+import { User } from 'src/users/users.model';
+import { Card } from 'src/cards/cards.model';
 
 interface ColumnCreationAttribute {
   userId: number;
@@ -9,7 +18,7 @@ interface ColumnCreationAttribute {
 
 @Table({ tableName: 'columns' })
 export class TrelloColumn extends Model<TrelloColumn, ColumnCreationAttribute> {
-  @ApiProperty({ example: 1, description: 'Unique column ID'})
+  @ApiProperty({ example: 1, description: 'Unique column ID' })
   @Column({
     type: DataType.INTEGER,
     unique: true,
@@ -18,15 +27,18 @@ export class TrelloColumn extends Model<TrelloColumn, ColumnCreationAttribute> {
   })
   id: number;
 
-  @ApiProperty({ example: 1, description: 'User ID'})
+  @ApiProperty({ example: 1, description: 'User ID' })
   @ForeignKey(() => User)
   @Column({ type: DataType.INTEGER, allowNull: false })
   userId: number;
 
-  @ApiProperty({ example: 'Backlog', description: 'Column name'})
+  @ApiProperty({ example: 'Backlog', description: 'Column name' })
   @Column({ type: DataType.STRING, allowNull: false })
   columnName: string;
 
   @BelongsTo(() => User)
   owner: User;
+
+  @HasMany(() => Card)
+  cards: Card[];
 }

@@ -10,9 +10,7 @@ import { CommentsService } from './comments.service';
 @Module({
   controllers: [CommentsController],
   providers: [CommentsService],
-  imports: [
-    SequelizeModule.forFeature([TrelloColumn, User, Card, Comment]),
-  ],
-  exports: [CommentsService]
+  imports: [SequelizeModule.forFeature([TrelloColumn, User, Card, Comment])],
+  exports: [CommentsService],
 })
 export class CommentsModule {}

@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ColumnsService } from './columns.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TrelloColumn } from './columns.model';
@@ -13,7 +21,7 @@ export class ColumnsController {
   @ApiResponse({ status: 200, type: TrelloColumn })
   @Post()
   create(@Param('userId') userId: number, @Body() dto: CreateColumnDto) {
-    return this.columnsService.create(userId, dto)
+    return this.columnsService.create(userId, dto);
   }
 
   @ApiOperation({ summary: 'Get all columns' })
@@ -33,7 +41,11 @@ export class ColumnsController {
   @ApiOperation({ summary: 'Update column' })
   @ApiResponse({ status: 204 })
   @Put(':id')
-  update(@Param('userId') userId: number, @Param('id') id: number, @Body() dto: CreateColumnDto) {
+  update(
+    @Param('userId') userId: number,
+    @Param('id') id: number,
+    @Body() dto: CreateColumnDto,
+  ) {
     return this.columnsService.update(userId, id, dto);
   }
 

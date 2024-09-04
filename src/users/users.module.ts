@@ -8,9 +8,7 @@ import { TrelloColumn } from 'src/columns/columns.model';
 @Module({
   controllers: [UsersController],
   providers: [UsersService],
-  imports: [
-    SequelizeModule.forFeature([User, TrelloColumn]),
-  ],
+  imports: [SequelizeModule.forFeature([User, TrelloColumn])],
   exports: [UsersService],
 })
 export class UsersModule {}

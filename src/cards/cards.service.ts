@@ -11,11 +11,21 @@ export class CardsService {
     return await this.cardRepository.create({ ...dto, userId, columnId });
   }
 
-  async update(userId: number, columnId: number, id: number, dto: CreateCardDto) {
-    const card = await this.cardRepository.findOne({ where: { id, userId, columnId } });
+  async update(
+    userId: number,
+    columnId: number,
+    id: number,
+    dto: CreateCardDto,
+  ) {
+    const card = await this.cardRepository.findOne({
+      where: { id, userId, columnId },
+    });
 
     if (!card) {
-      throw new HttpException('Card not found or you do not have permission to update it.', HttpStatus.NOT_FOUND);
+      throw new HttpException(
+        'Card not found or you do not have permission to update it.',
+        HttpStatus.NOT_FOUND,
+      );
     }
 
     return await card.update(dto);
@@ -26,20 +36,30 @@ export class CardsService {
   }
 
   async getOne(userId: number, columnId: number, id: number) {
-    const card = await this.cardRepository.findOne({ where: { id, userId, columnId } });
+    const card = await this.cardRepository.findOne({
+      where: { id, userId, columnId },
+    });
 
     if (!card) {
-      throw new HttpException('Card not found or you do not have permission to view it.', HttpStatus.NOT_FOUND);
+      throw new HttpException(
+        'Card not found or you do not have permission to view it.',
+        HttpStatus.NOT_FOUND,
+      );
     }
 
     return card;
   }
 
   async delete(userId: number, columnId: number, id: number) {
-    const card = await this.cardRepository.findOne({ where: { id, userId, columnId } });
+    const card = await this.cardRepository.findOne({
+      where: { id, userId, columnId },
+    });
 
     if (!card) {
-      throw new HttpException('Card not found or you do not have permission to delete it.', HttpStatus.NOT_FOUND);
+      throw new HttpException(
+        'Card not found or you do not have permission to delete it.',
+        HttpStatus.NOT_FOUND,
+      );
     }
 
     await card.destroy();

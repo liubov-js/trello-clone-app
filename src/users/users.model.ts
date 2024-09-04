@@ -1,6 +1,6 @@
-import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
+import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
-import { TrelloColumn } from "src/columns/columns.model";
+import { TrelloColumn } from 'src/columns/columns.model';
 
 interface UserCreationAttribute {
   email: string;
@@ -9,7 +9,7 @@ interface UserCreationAttribute {
 
 @Table({ tableName: 'users' })
 export class User extends Model<User, UserCreationAttribute> {
-  @ApiProperty({ example: 1, description: 'Unique user ID'})
+  @ApiProperty({ example: 1, description: 'Unique user ID' })
   @Column({
     type: DataType.INTEGER,
     unique: true,
@@ -18,11 +18,11 @@ export class User extends Model<User, UserCreationAttribute> {
   })
   id: number;
 
-  @ApiProperty({ example: 'example@mail.com', description: 'User email'})
+  @ApiProperty({ example: 'example@mail.com', description: 'User email' })
   @Column({ type: DataType.STRING, unique: true, allowNull: false })
   email: string;
 
-  @ApiProperty({ example: 'Abc123', description: 'User password'})
+  @ApiProperty({ example: 'Abc123', description: 'User password' })
   @Column({ type: DataType.STRING, allowNull: false })
   password: string;
 

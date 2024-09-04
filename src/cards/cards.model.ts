@@ -1,8 +1,16 @@
-import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  HasMany,
+  Model,
+  Table,
+} from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from "src/users/users.model";
-import { TrelloColumn } from "src/columns/columns.model";
-import { Comment } from "src/comments/comments.model";
+import { User } from 'src/users/users.model';
+import { TrelloColumn } from 'src/columns/columns.model';
+import { Comment } from 'src/comments/comments.model';
 
 interface CardCreationAttribute {
   userId: number;
@@ -13,7 +21,7 @@ interface CardCreationAttribute {
 
 @Table({ tableName: 'cards' })
 export class Card extends Model<Card, CardCreationAttribute> {
-  @ApiProperty({ example: 1, description: 'Unique card ID'})
+  @ApiProperty({ example: 1, description: 'Unique card ID' })
   @Column({
     type: DataType.INTEGER,
     unique: true,

@@ -3,7 +3,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthService } from './auth.service';
 
-const tokenResponseSchema =  {
+const tokenResponseSchema = {
   schema: {
     example: {
       token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...',

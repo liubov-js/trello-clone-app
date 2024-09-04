@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Card } from './cards.model';
 import { CardsService } from './cards.service';
@@ -12,7 +20,11 @@ export class CardsController {
   @ApiOperation({ summary: 'Create card' })
   @ApiResponse({ status: 200, type: Card })
   @Post()
-  create(@Param('userId') userId: number, @Param('columnId') columnId: number, @Body() dto: CreateCardDto) {
+  create(
+    @Param('userId') userId: number,
+    @Param('columnId') columnId: number,
+    @Body() dto: CreateCardDto,
+  ) {
     return this.cardService.create(userId, columnId, dto);
   }
 
@@ -26,21 +38,34 @@ export class CardsController {
   @ApiOperation({ summary: 'Get card' })
   @ApiResponse({ status: 200, type: Card })
   @Get(':id')
-  getOne(@Param('userId') userId: number, @Param('columnId') columnId: number, @Param('id') id: number) {
+  getOne(
+    @Param('userId') userId: number,
+    @Param('columnId') columnId: number,
+    @Param('id') id: number,
+  ) {
     return this.cardService.getOne(userId, columnId, id);
   }
 
   @ApiOperation({ summary: 'Update card' })
   @ApiResponse({ status: 204 })
   @Put(':id')
-  update(@Param('userId') userId: number, @Param('columnId') columnId: number, @Param('id') id: number, @Body() dto: CreateCardDto) {
+  update(
+    @Param('userId') userId: number,
+    @Param('columnId') columnId: number,
+    @Param('id') id: number,
+    @Body() dto: CreateCardDto,
+  ) {
     return this.cardService.update(userId, columnId, id, dto);
   }
 
   @ApiOperation({ summary: 'Delete card' })
   @ApiResponse({ status: 204 })
   @Delete(':id')
-  delete(@Param('userId') userId: number, @Param('columnId') columnId: number, @Param('id') id: number) {
+  delete(
+    @Param('userId') userId: number,
+    @Param('columnId') columnId: number,
+    @Param('id') id: number,
+  ) {
     return this.cardService.delete(userId, columnId, id);
   }
 }

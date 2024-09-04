@@ -20,7 +20,7 @@ export class UsersService {
   }
 
   async delete(id: number) {
-    const user =  await this.userRepository.findByPk(id);
+    const user = await this.userRepository.findByPk(id);
     await user.destroy();
   }
 
