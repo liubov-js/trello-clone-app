@@ -6,13 +6,16 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { OwnershipGuard } from 'src/guards/ownership.guard';
 import { Comment } from './comments.model';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 
 @ApiTags('Comments')
+@UseGuards(OwnershipGuard)
 @Controller('users/:userId/columns/:columnId/cards/:cardId/comments')
 export class CommentsController {
   constructor(private commentsService: CommentsService) {}

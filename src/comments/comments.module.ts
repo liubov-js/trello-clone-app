@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { AuthModule } from 'src/auth/auth.module';
 import { Card } from 'src/cards/cards.model';
 import { TrelloColumn } from 'src/columns/columns.model';
 import { User } from 'src/users/users.model';
@@ -10,7 +11,10 @@ import { CommentsService } from './comments.service';
 @Module({
   controllers: [CommentsController],
   providers: [CommentsService],
-  imports: [SequelizeModule.forFeature([TrelloColumn, User, Card, Comment])],
+  imports: [
+    SequelizeModule.forFeature([TrelloColumn, User, Card, Comment]),
+    AuthModule,
+  ],
   exports: [CommentsService],
 })
 export class CommentsModule {}

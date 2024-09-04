@@ -6,13 +6,16 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { ColumnsService } from './columns.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TrelloColumn } from './columns.model';
 import { CreateColumnDto } from './dto/create-column.dto';
+import { OwnershipGuard } from 'src/guards/ownership.guard';
 
 @ApiTags('Columns')
+@UseGuards(OwnershipGuard)
 @Controller('users/:userId/columns')
 export class ColumnsController {
   constructor(private columnsService: ColumnsService) {}

@@ -55,15 +55,6 @@ export class UsersService {
   }
 
   async getByEmail(email: string) {
-    const user = await this.userRepository.findOne({ where: { email } });
-
-    if (!user) {
-      throw new HttpException(
-        'User not found or you do not have permission to view them.',
-        HttpStatus.NOT_FOUND,
-      );
-    }
-
-    return user;
+    return await this.userRepository.findOne({ where: { email } });
   }
 }

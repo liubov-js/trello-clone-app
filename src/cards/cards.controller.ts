@@ -6,13 +6,16 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { OwnershipGuard } from 'src/guards/ownership.guard';
 import { Card } from './cards.model';
 import { CardsService } from './cards.service';
 import { CreateCardDto } from './dto/create-card.dto';
 
 @ApiTags('Cards')
+@UseGuards(OwnershipGuard)
 @Controller('users/:userId/columns/:columnId/cards')
 export class CardsController {
   constructor(private cardService: CardsService) {}
