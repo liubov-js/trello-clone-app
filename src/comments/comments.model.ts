@@ -49,7 +49,7 @@ export class Comment extends Model<Comment, CommentCreationAttribute> {
   @Column({ type: DataType.STRING, allowNull: false })
   text: string;
 
-  @ApiProperty({ example: '2', description: 'Comment author ID' })
+  @ApiProperty({ example: 2, description: 'Comment author ID' })
   @ForeignKey(() => User)
   @Column({ type: DataType.INTEGER, allowNull: false })
   authorId: number;
