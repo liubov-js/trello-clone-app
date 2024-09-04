@@ -1,7 +1,8 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from "src/users/users.model";
 import { TrelloColumn } from "src/columns/columns.model";
+import { Comment } from "src/comments/comments.model";
 
 interface CardCreationAttribute {
   userId: number;
@@ -41,4 +42,7 @@ export class Card extends Model<Card, CardCreationAttribute> {
 
   @BelongsTo(() => TrelloColumn)
   column: TrelloColumn;
+
+  @HasMany(() => Comment)
+  comments: Comment[];
 }
